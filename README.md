@@ -1,0 +1,2 @@
+# SNO
+Spectral Neural Operator
