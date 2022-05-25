@@ -1,5 +1,5 @@
 # SNO
-Spectral Neural Operator is a neural network that performs mapping between two functions given as Chebyshev or Fourier series. More details about SNO are available in the article *link to appear*. In the repository you can find implementation of basic operations with polynomials, architectures we discuss in the article and scripts for dataset generation.
+Spectral Neural Operator is a neural network that performs mapping between two functions given as Chebyshev or Fourier series. More details about SNO are available in the article [V. Fanaskov, I. Oseledets, Spectral Neural Operators](https://arxiv.org/abs/2205.10573). In the repository you can find implementation of basic operations with polynomials, architectures we discuss in the article and scripts for dataset generation.
 
 We cover main functionality with Jupyter notebooks:
 + functions
