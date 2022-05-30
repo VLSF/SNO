@@ -24,3 +24,5 @@ We cover main functionality with Jupyter notebooks:
   + [Burgers](https://github.com/VLSF/SNO/blob/main/notebooks/datasets/Burgers.ipynb)
   + [KdV](https://github.com/VLSF/SNO/blob/main/notebooks/datasets/KdV%20exact.ipynb)
   + [Breather](https://github.com/VLSF/SNO/blob/main/notebooks/datasets/Breather.ipynb)
+
+Most datasets can be efficiently generated using provided scripts in a matter of minutes. Two notable exceptions are Burgers equation and elliptic equation in D=2. You can use [this link](https://drive.google.com/drive/folders/1x5-rPf5Rg-KYy7tB9ibxsnFosRMmjIrb?usp=sharing) to access complete datasets for these two cases. Content of the folder, and instructions how to process data, can be found in [this notebook](https://github.com/VLSF/SNO/blob/main/notebooks/datasets/Working%20with%20datasets.ipynb).
