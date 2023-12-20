@@ -1,14 +1,12 @@
 import functions.utils as utils
-import functions.Chebyshev as Chebyshev
-import functions.Fourier as Fourier
 import jax.numpy as jnp
 import os
 
-from jax import random, jit, grad, vmap
+from jax import random, jit, vmap
 from functools import partial
 
 def random_c_layer_params(m, n, key):
-    w_key, b_key, s_key = random.split(key, 3)
+    w_key, b_key= random.split(key, 2)
     layer_parameters = (random.normal(w_key, (m, n)) / m, random.normal(b_key, (1, n)))
     return layer_parameters
 
@@ -18,6 +16,14 @@ def init_c_network_params(sizes, key):
 
 @partial(jit, static_argnums=2)
 def NN_c(params, input, activation=utils.relu):
+    n = len(params)
+    for p in params:
+        input = jnp.dot(input, p[0]) + p[1]
+        input = activation(input)
+    return input
+
+@partial(jit, static_argnums=2)
+def NN_co(params, input, activation=utils.relu):
     n = len(params)
     for i, p in enumerate(params):
         input = jnp.dot(input, p[0]) + p[1]
@@ -38,15 +44,14 @@ def NN_i(params, input, activation=utils.relu):
     n = len(params)
     for i, p in enumerate(params):
         input = jnp.dot(jnp.dot(p[0], input), p[1]) + p[2]
-        if i < n-1:
-            input = activation(input)
+        input = activation(input)
     return input
 
 @partial(jit, static_argnums=2)
 def NN(params, input, activation=utils.softplus):
     input = NN_c(params[0], input, activation=activation)
     input = NN_i(params[1], input, activation=activation)
-    input = NN_c(params[2], input, activation=activation)
+    input = NN_c0(params[2], input, activation=activation)
     return input
 
 batched_NN = vmap(NN, in_axes=(None, 0))
