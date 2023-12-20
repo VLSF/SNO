@@ -51,7 +51,7 @@ def NN_i(params, input, activation=utils.relu):
 def NN(params, input, activation=utils.softplus):
     input = NN_c(params[0], input, activation=activation)
     input = NN_i(params[1], input, activation=activation)
-    input = NN_c0(params[2], input, activation=activation)
+    input = NN_co(params[2], input, activation=activation)
     return input
 
 batched_NN = vmap(NN, in_axes=(None, 0))
